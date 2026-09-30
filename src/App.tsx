@@ -48,7 +48,14 @@ export function App() {
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
+        if (parsed.teacherName === "Nguyễn Hoàng Tuấn") {
+          parsed.teacherName = "Lữ Văn Tuấn";
+        }
+        if (parsed.version === "2026_v10_official_truong_chinh_tkb_sync") {
+          return parsed;
+        }
         if (parsed.version === "2026_v9_official_all_teachers_sync") {
+          parsed.version = "2026_v10_official_truong_chinh_tkb_sync";
           return parsed;
         }
       } catch (e) {}
@@ -82,7 +89,7 @@ export function App() {
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        if (parsed.version === "2026_v9_official_all_teachers_sync") {
+        if (parsed.version === "2026_v10_official_truong_chinh_tkb_sync") {
           return parsed;
         }
       } catch (e) {}
@@ -354,7 +361,7 @@ export function App() {
     let targetClass = schoolInfo.className;
     let targetGrade = schoolInfo.grade;
 
-    if (matched && matched.type === "homeroom" && matched.assignedClasses && matched.assignedClasses.length > 0) {
+    if (matched && matched.assignedClasses && matched.assignedClasses.length > 0) {
       targetClass = matched.assignedClasses[0];
       const gNum = parseInt(targetClass.charAt(0)) as Grade;
       if (!isNaN(gNum) && gNum >= 1 && gNum <= 5) {

@@ -445,12 +445,12 @@ export const DEFAULT_TEACHERS: TeacherInfo[] = [
     totalPeriods: 4,
   },
   {
-    id: "gv_tuan_tpt",
-    name: "Nguyễn Hoàng Tuấn",
-    role: "Tổng Phụ trách Đội (Dạy 2 tiết Đạo đức 4A1)",
+    id: "gv_tuan_dd",
+    name: "Lữ Văn Tuấn",
+    role: "GV Bộ môn Đạo đức (Lớp 4A1, 4A2)",
     type: "specialist",
     specialistSubject: "Đạo đức",
-    assignedClasses: ["4A1"],
+    assignedClasses: ["4A1", "4A2"],
     subjects: ["Đạo đức", "ĐĐ"],
     teachingPeriods: 2,
     concurrentPeriods: 0,
@@ -804,7 +804,7 @@ export const TIMETABLE_TUAN_2_SLOTS = TIMETABLE_TRUONG_CHINH_2026_SLOTS;
 export const DEFAULT_MASTER_TIMETABLE: MasterTimetable = {
   schoolName: "Trường Tiểu Học Tân Thạnh",
   effectiveDate: "Áp dụng từ Tuần 1 đến Tuần 4 (Năm học 2026 - 2027)",
-  version: "2026_v9_official_all_teachers_sync",
+  version: "2026_v10_official_truong_chinh_tkb_sync",
   classes: DEFAULT_CLASSES,
   slots: TIMETABLE_TRUONG_CHINH_2026_SLOTS,
 };
@@ -977,7 +977,7 @@ export function isSlotMatchingTeacherOrSubject(
   if (lowerName.includes("thủy") && (lowerName.includes("hồng thủy") || lowerName.includes("phó hiệu trưởng") || lowerName.includes("pht"))) {
     return lowerCell.includes("(thủy)") || lowerCell.includes("thủy");
   }
-  if (lowerName.includes("tuấn") && (lowerName.includes("hoàng tuấn") || lowerName.includes("tpt"))) {
+  if (lowerName.includes("tuấn") || lowerName.includes("lữ văn tuấn")) {
     return lowerCell.includes("(tuấn)") || lowerCell.includes("tuấn");
   }
 
@@ -1027,6 +1027,27 @@ export function isSlotMatchingTeacherOrSubject(
     }
     if (sSub.includes("lịch sử") || sSub.includes("địa lí") || sSub.includes("ls&đl")) {
       return lowerCell.includes("ls&đl (ngân)") || lowerCell.includes("ls&đl") || lowerCell.includes("ls-đl");
+    }
+    if (sSub.includes("đạo đức") || sSub.includes("đđ")) {
+      if (lowerName.includes("tuấn")) {
+        return lowerCell.includes("(tuấn)") || lowerCell.includes("tuấn");
+      }
+      if (lowerName.includes("dương")) {
+        return lowerCell.includes("(dương)") || lowerCell.includes("dương");
+      }
+      if (lowerName.includes("thủy")) {
+        return lowerCell.includes("(thủy)") || lowerCell.includes("thủy");
+      }
+      if (lowerName.includes("thơ")) {
+        return lowerCell.includes("(thơ)") || lowerCell.includes("thơ");
+      }
+      if (lowerName.includes("dung")) {
+        return lowerCell.includes("(dung)") || lowerCell.includes("dung");
+      }
+      if (lowerName.includes("trinh")) {
+        return lowerCell.includes("(trinh)") || lowerCell.includes("trinh");
+      }
+      return lowerCell.includes("đđ") || lowerCell.includes("đạo đức");
     }
   }
 
@@ -1181,7 +1202,7 @@ export function generateScheduleForClass(
   targetClass: string,
   week: number = 1,
   startDateStr?: string,
-  teacherName: string = "Nguyễn Hoàng Tuấn"
+  teacherName: string = "Lữ Văn Tuấn"
 ): ScheduleItem[] {
   const items: ScheduleItem[] = [];
   const dates = getWeekDates(startDateStr, week);
@@ -1378,7 +1399,7 @@ export function getSpecialistTeacherShortName(item: {
   if (raw.includes("(TRINH)") || note.includes("TRINH")) return "Cô Tú Trinh";
   if (raw.includes("(DƯƠNG)") || note.includes("DƯƠNG")) return "Cô Trương Thị Kim Dương";
   if (raw.includes("(THỦY)") || note.includes("THỦY")) return "Cô Lê Thị Hồng Thủy";
-  if (raw.includes("(TUẤN)") || note.includes("TUẤN")) return "Thầy Nguyễn Hoàng Tuấn";
+  if (raw.includes("(TUẤN)") || note.includes("TUẤN")) return "Thầy Lữ Văn Tuấn";
 
   // Legacy fallback
   if (raw.includes("(THỊNH)") || note.includes("THỊNH") || sub.includes("GD THỂ CHẤT") || sub.includes("GDTC") || sub.includes("THỂ DỤC")) {
@@ -1459,7 +1480,7 @@ export function mapRawSubjectToScheduleItem(
   } else if (clean.includes("(Thủy)")) {
     note = "PHT: Lê Thị Hồng Thủy";
   } else if (clean.includes("(Tuấn)")) {
-    note = "TPT: Nguyễn Hoàng Tuấn";
+    note = "GV Đạo đức: Thầy Lữ Văn Tuấn";
   } else if (clean.includes("(Thịnh)")) {
     note = "GV Chuyên GDTC: Thầy Thịnh";
   } else if (clean.includes("(Nương)")) {
@@ -1663,7 +1684,7 @@ export function mapRawSubjectToScheduleItem(
     subject = `ĐẠO ĐỨC ${gradeNum}`;
     if (!note && clean.includes("Dương")) note = "HT: Trương Thị Kim Dương";
     else if (!note && clean.includes("Thủy")) note = "PHT: Lê Thị Hồng Thủy";
-    else if (!note && clean.includes("Tuấn")) note = "TPT: Nguyễn Hoàng Tuấn";
+    else if (!note && clean.includes("Tuấn")) note = "GV Đạo đức: Thầy Lữ Văn Tuấn";
     else if (!note && clean.includes("Thơ")) note = "GV Bộ môn: Cô Thơ";
     else if (!note && clean.includes("Dung")) note = "GV Bộ môn: Cô Dung";
     else if (!note && clean.includes("Trinh")) note = "GV Bộ môn: Cô Tú Trinh";

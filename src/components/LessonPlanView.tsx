@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { LessonPlan, SchoolInfo, DayOfWeek } from "../types";
 import { DAYS_OF_WEEK, getWeekDates } from "../data/defaultTimetables";
+import { sanitizeLessonPlanMaterials } from "../utils/materialSanitizer";
 import { 
   FileDown, 
   Sparkles, 
@@ -567,14 +568,19 @@ export const LessonPlanView: React.FC<LessonPlanViewProps> = ({
                         </div>
 
                         {/* II. Đồ dùng dạy học */}
-                        <div className="text-xs bg-stone-50 p-2.5 border border-stone-300 flex flex-col sm:flex-row gap-2">
-                          <div className="sm:w-1/2">
-                            <strong className="text-black">{isEn ? "Teacher's Aids: " : "Đồ dùng GV: "}</strong> <span className="text-stone-700">{plan.materials?.teacher?.join("; ")}</span>
-                          </div>
-                          <div className="sm:w-1/2">
-                            <strong className="text-black">{isEn ? "Students' Aids: " : "Đồ dùng HS: "}</strong> <span className="text-stone-700">{plan.materials?.student?.join("; ")}</span>
-                          </div>
-                        </div>
+                        {(() => {
+                          const cleanMat = sanitizeLessonPlanMaterials(plan.materials, plan.subject, plan.grade, plan.lessonTitle);
+                          return (
+                            <div className="text-xs bg-stone-50 p-2.5 border border-stone-300 flex flex-col sm:flex-row gap-2">
+                              <div className="sm:w-1/2">
+                                <strong className="text-black">{isEn ? "Teacher's Aids: " : "Đồ dùng GV: "}</strong> <span className="text-stone-700">{cleanMat.teacher.join("; ")}</span>
+                              </div>
+                              <div className="sm:w-1/2">
+                                <strong className="text-black">{isEn ? "Students' Aids: " : "Đồ dùng HS: "}</strong> <span className="text-stone-700">{cleanMat.student.join("; ")}</span>
+                              </div>
+                            </div>
+                          );
+                        })()}
 
                         {/* III. Các hoạt động dạy học chủ yếu (Bảng 2 cột chuẩn CV 2345/BGDĐT) */}
                         <div className="border border-black overflow-x-auto bg-white">
@@ -995,12 +1001,19 @@ export const LessonPlanView: React.FC<LessonPlanViewProps> = ({
                   {isEn ? "II. TEACHING AIDS & EQUIPMENT" : "II. ĐỒ DÙNG DẠY HỌC VÀ HỌC LIỆU"}
                 </h3>
                 <div className="space-y-1 pl-2">
-                  <p className="text-stone-800">
-                    <strong className="text-black">{isEn ? "- Teacher: " : "- Giáo viên: "}</strong> {activePlan.materials.teacher.join("; ")}
-                  </p>
-                  <p className="text-stone-800">
-                    <strong className="text-black">{isEn ? "- Students: " : "- Học sinh: "}</strong> {activePlan.materials.student.join("; ")}
-                  </p>
+                  {(() => {
+                    const cleanMat = sanitizeLessonPlanMaterials(activePlan.materials, activePlan.subject, activePlan.grade, activePlan.lessonTitle);
+                    return (
+                      <>
+                        <p className="text-stone-800">
+                          <strong className="text-black">{isEn ? "- Teacher: " : "- Giáo viên: "}</strong> {cleanMat.teacher.join("; ")}
+                        </p>
+                        <p className="text-stone-800">
+                          <strong className="text-black">{isEn ? "- Students: " : "- Học sinh: "}</strong> {cleanMat.student.join("; ")}
+                        </p>
+                      </>
+                    );
+                  })()}
                 </div>
               </div>
 

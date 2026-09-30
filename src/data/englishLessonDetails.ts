@@ -675,8 +675,7 @@ export function getDetailedEnglishLesson(
   ];
 
   const studentMaterials = [
-    `Sách học sinh Tiếng Anh Lớp ${grade}, vở ghi chép, bút chì, bút màu.`,
-    `Bộ thẻ từ vựng mini cá nhân để thực hành trò chơi ghép từ và luyện nói theo cặp.`
+    `Bộ thẻ từ vựng mini cá nhân để thực hành trò chơi ghép từ và luyện nói theo cặp, phiếu luyện tập nhóm.`
   ];
 
   const integrationNotes = `Tích hợp Năng lực số (CV 3456): Sử dụng Flashcard số và nghe phát âm audio chuẩn; Tích hợp Học thông qua chơi (Play-based learning) qua trò chơi "${matchedUnit.game}".`;

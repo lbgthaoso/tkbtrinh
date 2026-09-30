@@ -450,14 +450,14 @@ export const GRADE_4_LICH_SU_DIA_LI: Record<number, Array<{ title: string; perio
 
 export const GRADE_4_DAO_DUC: Record<number, { title: string; period: number; integ?: string }> = {
   1: { title: "Bài 1: Biết ơn người lao động (Tiết 1)", period: 1 },
-  2: { title: "Bài 1: Biết ơn người lao động (Tiết 2)", period: 2 },
+  2: { title: "Bài 1: Biết ơn người lao động (Tiết 2)", period: 2, integ: "Tôn trọng các ngành nghề lao động chân chính." },
   3: { title: "Bài 2: Cảm thông, giúp đỡ người gặp khó khăn (Tiết 1)", period: 3 },
   4: { title: "Bài 2: Cảm thông, giúp đỡ người gặp khó khăn (Tiết 2)", period: 4, integ: "Lá lành đùm lá rách, sẻ chia tấm lòng nhân ái." },
   5: { title: "Bài 3: Yêu lao động (Tiết 1)", period: 5, integ: "Lao động là vinh quang, tự giác làm việc nhà và trường." },
   6: { title: "Bài 3: Yêu lao động (Tiết 2)", period: 6 },
   7: { title: "Bài 4: Tôn trọng tài sản của người khác (Tiết 1)", period: 7, integ: "Không tự ý lấy, dùng đồ dùng của bạn khi chưa xin phép." },
   8: { title: "Bài 4: Tôn trọng tài sản của người khác (Tiết 2)", period: 8 },
-  9: { title: "Ôn tập giữa học kì I", period: 9 },
+  9: { title: "Thực hành rèn luyện kĩ năng giữa học kì I", period: 9 },
   10: { title: "Bài 5: Bảo vệ của công (Tiết 1)", period: 10, integ: "Giữ gìn bàn ghế lớp học, cây xanh công viên." },
   11: { title: "Bài 5: Bảo vệ của công (Tiết 2)", period: 11 },
   12: { title: "Bài 6: Thiết lập và duy trì quan hệ bạn bè (Tiết 1)", period: 12, integ: "Chan hòa, chân thành và thấu hiểu bạn bè." },
@@ -466,7 +466,24 @@ export const GRADE_4_DAO_DUC: Record<number, { title: string; period: number; in
   15: { title: "Bài 7: Quý trọng đồng tiền (Tiết 2)", period: 15 },
   16: { title: "Bài 8: Quyền và bổn phận của trẻ em (Tiết 1)", period: 16, integ: "QCN: Quyền được học tập, chăm sóc và bổn phận hiếu kính." },
   17: { title: "Bài 8: Quyền và bổn phận của trẻ em (Tiết 2)", period: 17 },
-  18: { title: "Ôn tập cuối kì I", period: 18 }
+  18: { title: "Ôn tập và đánh giá cuối học kì I", period: 18 },
+  19: { title: "Bài 9: Nhận biết nguy cơ đuối nước và cách phòng tránh (Tiết 1)", period: 19, integ: "Không tự ý tắm sông, suối, ao hồ khi không có người lớn giám sát." },
+  20: { title: "Bài 9: Nhận biết nguy cơ đuối nước và cách phòng tránh (Tiết 2)", period: 20 },
+  21: { title: "Bài 10: Phòng tránh tai nạn điện (Tiết 1)", period: 21, integ: "Kĩ năng an toàn điện, không chọc vật lạ vào ổ cắm điện." },
+  22: { title: "Bài 10: Phòng tránh tai nạn điện (Tiết 2)", period: 22 },
+  23: { title: "Bài 11: Phòng, tránh bị xâm hại (Tiết 1)", period: 23, integ: "Quy tắc 5 ngón tay, giữ khoảng cách an toàn với người lạ." },
+  24: { title: "Bài 11: Phòng, tránh bị xâm hại (Tiết 2)", period: 24 },
+  25: { title: "Bài 12: Phòng, tránh bạo lực học đường (Tiết 1)", period: 25, integ: "Nói không với bạo lực học đường, báo ngay thầy cô khi bị bắt nạt." },
+  26: { title: "Thực hành rèn luyện kĩ năng giữa học kì II", period: 26 },
+  27: { title: "Bài 12: Phòng, tránh bạo lực học đường (Tiết 2)", period: 27 },
+  28: { title: "Bài 13: Em yêu thiên nhiên, bảo vệ môi trường (Tiết 1)", period: 28, integ: "BVMT: Trồng và chăm sóc cây xanh, phân loại rác thải." },
+  29: { title: "Bài 13: Em yêu thiên nhiên, bảo vệ môi trường (Tiết 2)", period: 29 },
+  30: { title: "Bài 14: Giữ gìn và phát huy truyền thống quê hương (Tiết 1)", period: 30, integ: "Tự hào truyền thống văn hóa, hiếu học của quê hương đất nước." },
+  31: { title: "Bài 14: Giữ gìn và phát huy truyền thống quê hương (Tiết 2)", period: 31 },
+  32: { title: "Thực hành kĩ năng sống và phòng chống tai nạn thương tích (Tiết 1)", period: 32 },
+  33: { title: "Thực hành kĩ năng sống và phòng chống tai nạn thương tích (Tiết 2)", period: 33 },
+  34: { title: "Ôn tập cuối năm học (Tiết 1)", period: 34 },
+  35: { title: "Đánh giá cuối năm học (Tiết 2)", period: 35 }
 };
 
 export const GRADE_4_CONG_NGHE: Record<number, { title: string; period: number; integ?: string }> = {

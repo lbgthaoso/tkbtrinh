@@ -3,11 +3,11 @@ import { getDetailedMusicLesson } from "./musicLessonDetails";
 import { findGrade5Integration } from "./grade5IntegrationPlan";
 import { cleanLessonTitle } from "../utils/lessonTitleHelper";
 
-import { GRADE_1_CURRICULUM_DATA } from "./curriculums/grade1Curriculum";
-import { GRADE_2_CURRICULUM_DATA } from "./curriculums/grade2Curriculum";
-import { GRADE_3_CURRICULUM_DATA } from "./curriculums/grade3Curriculum";
-import { GRADE_4_CURRICULUM_DATA } from "./curriculums/grade4Curriculum";
-import { GRADE_5_CURRICULUM_DATA } from "./curriculums/grade5Curriculum";
+import { GRADE_1_CURRICULUM_DATA, GRADE_1_DAO_DUC } from "./curriculums/grade1Curriculum";
+import { GRADE_2_CURRICULUM_DATA, GRADE_2_DAO_DUC } from "./curriculums/grade2Curriculum";
+import { GRADE_3_CURRICULUM_DATA, GRADE_3_DAO_DUC } from "./curriculums/grade3Curriculum";
+import { GRADE_4_CURRICULUM_DATA, GRADE_4_DAO_DUC } from "./curriculums/grade4Curriculum";
+import { GRADE_5_CURRICULUM_DATA, GRADE_5_DAO_DUC } from "./curriculums/grade5Curriculum";
 
 export interface LessonInfo {
   lessonTitle: string;
@@ -217,6 +217,50 @@ export function getSpecialistLessonInfo(
       };
     }
   }
+  // 7. ĐẠO ĐỨC (Thầy Lữ Văn Tuấn & GV Bộ môn Đạo đức)
+  if (subLower.includes("đạo đức") || subLower.includes("đđ")) {
+    if (grade === 1) {
+      const item = GRADE_1_DAO_DUC[week];
+      return {
+        lessonTitle: cleanLessonTitle(item?.title || `Đạo đức 1 - Tuần ${week}`),
+        curriculumPeriod: item?.period || week,
+        integrationNotes: item?.integ || "Đạo đức 1 GDPT 2018."
+      };
+    }
+    if (grade === 2) {
+      const item = GRADE_2_DAO_DUC[week];
+      return {
+        lessonTitle: cleanLessonTitle(item?.title || `Đạo đức 2 - Tuần ${week}`),
+        curriculumPeriod: item?.period || week,
+        integrationNotes: item?.integ || "Đạo đức 2 GDPT 2018."
+      };
+    }
+    if (grade === 3) {
+      const item = GRADE_3_DAO_DUC[week];
+      return {
+        lessonTitle: cleanLessonTitle(item?.title || `Đạo đức 3 - Tuần ${week}`),
+        curriculumPeriod: item?.period || week,
+        integrationNotes: item?.integ || "Đạo đức 3 GDPT 2018."
+      };
+    }
+    if (grade === 4) {
+      const item = GRADE_4_DAO_DUC[week];
+      return {
+        lessonTitle: cleanLessonTitle(item?.title || `Đạo đức 4 - Tuần ${week}`),
+        curriculumPeriod: item?.period || week,
+        integrationNotes: item?.integ || "Đạo đức 4 GDPT 2018."
+      };
+    }
+    if (grade === 5) {
+      const item = GRADE_5_DAO_DUC[week];
+      return {
+        lessonTitle: cleanLessonTitle(item?.title || `Đạo đức 5 - Tuần ${week}`),
+        curriculumPeriod: item?.period || week,
+        integrationNotes: item?.integ || "Đạo đức 5 GDPT 2018."
+      };
+    }
+  }
+
   return {
     lessonTitle: cleanLessonTitle(`Hoạt động trải nghiệm: Hoạt động giáo dục theo chủ đề - Tuần ${week}`),
     curriculumPeriod: week,
@@ -271,7 +315,8 @@ export function getGradeCurriculumLesson(
       normSub.includes("tin học") || normSub.includes("th") ||
       normSub.includes("âm nhạc") || normSub.includes("an") ||
       normSub.includes("mĩ thuật") || normSub.includes("mt") ||
-      normSub.includes("thể chất") || normSub.includes("gdtc")) {
+      normSub.includes("thể chất") || normSub.includes("gdtc") ||
+      normSub.includes("đạo đức") || normSub.includes("đđ")) {
     const spec = getSpecialistLessonInfo(subject, grade, week, periodInWeek);
     spec.lessonTitle = cleanLessonTitle(spec.lessonTitle);
     return spec;

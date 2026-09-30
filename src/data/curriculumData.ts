@@ -3,6 +3,7 @@ import { getDetailedMusicLesson } from "./musicLessonDetails";
 import { getDetailedEnglishLesson } from "./englishLessonDetails";
 import { getDetailedLessonActivities } from "./detailedActivitiesGenerator";
 import { cleanLessonTitle, normalizeActivityName } from "../utils/lessonTitleHelper";
+import { sanitizeLessonPlanMaterials } from "../utils/materialSanitizer";
 
 export interface SubjectCurriculum {
   subject: string;
@@ -87,7 +88,7 @@ export const SAMPLE_LESSON_PLANS: Record<string, LessonPlan> = {
     week: 1,
     dayOfWeek: "Thứ Hai",
     dateStr: "07/09/2026",
-    teacherName: "Nguyễn Hoàng Tuấn",
+    teacherName: "Lữ Văn Tuấn",
     className: "5A",
     schoolName: "Trường Tiểu học Tân Thạnh",
     departmentName: "UBND Xã Tân Thạnh",
@@ -155,7 +156,7 @@ export const SAMPLE_LESSON_PLANS: Record<string, LessonPlan> = {
     week: 3,
     dayOfWeek: "Thứ Hai",
     dateStr: "21/09/2026",
-    teacherName: "Nguyễn Hoàng Tuấn",
+    teacherName: "Lữ Văn Tuấn",
     className: "5A",
     schoolName: "Trường Tiểu học Tân Thạnh",
     departmentName: "UBND Xã Tân Thạnh",
@@ -221,7 +222,7 @@ export const SAMPLE_LESSON_PLANS: Record<string, LessonPlan> = {
     week: 3,
     dayOfWeek: "Thứ Hai",
     dateStr: "21/09/2026",
-    teacherName: "Nguyễn Hoàng Tuấn",
+    teacherName: "Lữ Văn Tuấn",
     className: "5A",
     schoolName: "Trường Tiểu học Tân Thạnh",
     objectives: {
@@ -242,8 +243,8 @@ export const SAMPLE_LESSON_PLANS: Record<string, LessonPlan> = {
       }
     },
     materials: {
-      teacher: ["Sách giáo khoa, máy chiếu trình chiếu bài thơ, tranh ảnh minh họa hạt nảy mầm."],
-      student: ["Sách giáo khoa Tiếng Việt 5, vở ghi bài."]
+      teacher: ["Ti vi/máy chiếu, bài giảng điện tử (PPTX), tranh ảnh hoặc video minh họa bài thơ Tiếng hạt nảy mầm."],
+      student: ["Phiếu học tập nhóm, thẻ từ ngữ, tranh ảnh về sự phát triển của mầm cây sưu tầm."]
     },
     activities: [
       {
@@ -284,7 +285,7 @@ export const SAMPLE_LESSON_PLANS: Record<string, LessonPlan> = {
     week: 3,
     dayOfWeek: "Thứ Hai",
     dateStr: "21/09/2026",
-    teacherName: "Nguyễn Hoàng Tuấn",
+    teacherName: "Lữ Văn Tuấn",
     className: "5A",
     schoolName: "Trường Tiểu học Tân Thạnh",
     objectives: {
@@ -304,8 +305,8 @@ export const SAMPLE_LESSON_PLANS: Record<string, LessonPlan> = {
       }
     },
     materials: {
-      teacher: ["Phiếu bài tập nhóm, bảng phụ ghi các đoạn văn mẫu."],
-      student: ["Vở bài tập Tiếng Việt 5, bút."]
+      teacher: ["Ti vi/máy chiếu, bài giảng điện tử (PPTX), phiếu bài tập nhóm, bảng phụ ghi các đoạn văn mẫu."],
+      student: ["Phiếu học tập cá nhân/nhóm, thẻ từ xưng hô luyện tập thảo luận."]
     },
     activities: [
       {
@@ -345,7 +346,7 @@ export const SAMPLE_LESSON_PLANS: Record<string, LessonPlan> = {
     week: 3,
     dayOfWeek: "Thứ Hai",
     dateStr: "21/09/2026",
-    teacherName: "Nguyễn Hoàng Tuấn",
+    teacherName: "Lữ Văn Tuấn",
     className: "5A",
     schoolName: "Trường Tiểu học Tân Thạnh",
     objectives: {
@@ -364,8 +365,8 @@ export const SAMPLE_LESSON_PLANS: Record<string, LessonPlan> = {
       }
     },
     materials: {
-      teacher: ["Bộ đồ dùng dạy học Toán 5, phiếu học tập nhóm."],
-      student: ["Bộ thực hành Toán 5, bảng con, nháp."]
+      teacher: ["Ti vi/máy chiếu, bài giảng điện tử tương tác phân số, phiếu học tập nhóm."],
+      student: ["Phiếu học tập, thẻ phân số thực hành quy đồng mẫu số."]
     },
     activities: [
       {
@@ -405,7 +406,7 @@ export const SAMPLE_LESSON_PLANS: Record<string, LessonPlan> = {
     week: 3,
     dayOfWeek: "Thứ Hai",
     dateStr: "21/09/2026",
-    teacherName: "Nguyễn Hoàng Tuấn",
+    teacherName: "Lữ Văn Tuấn",
     className: "5A",
     schoolName: "Trường Tiểu học Tân Thạnh",
     objectives: {
@@ -425,8 +426,8 @@ export const SAMPLE_LESSON_PLANS: Record<string, LessonPlan> = {
       }
     },
     materials: {
-      teacher: ["Hình ảnh xói mòn đất, ruộng bậc thang, video ngắn về xói mòn đất."],
-      student: ["Giấy A3, bút dạ màu làm việc nhóm."]
+      teacher: ["Ti vi/máy chiếu, bài giảng điện tử (PPTX), video clip hoặc hình ảnh ruộng bậc thang, xói mòn đất."],
+      student: ["Giấy A3, bút màu vẽ sơ đồ tư duy nhóm, phiếu điều tra môi trường đất."]
     },
     activities: [
       {
@@ -466,7 +467,7 @@ export const SAMPLE_LESSON_PLANS: Record<string, LessonPlan> = {
     week: 3,
     dayOfWeek: "Thứ Hai",
     dateStr: "21/09/2026",
-    teacherName: "Nguyễn Hoàng Tuấn",
+    teacherName: "Lữ Văn Tuấn",
     className: "5A",
     schoolName: "Trường Tiểu học Tân Thạnh",
     objectives: {
@@ -485,8 +486,8 @@ export const SAMPLE_LESSON_PLANS: Record<string, LessonPlan> = {
       }
     },
     materials: {
-      teacher: ["Hình ảnh Thomas Edison, hình ảnh chiếc bóng đèn sợi đốt đầu tiên."],
-      student: ["Sách giáo khoa Công nghệ 5."]
+      teacher: ["Ti vi/máy chiếu, hình ảnh chân dung Thomas Edison, hình ảnh chiếc bóng đèn sợi đốt đầu tiên."],
+      student: ["Phiếu tìm hiểu thông tin tiểu sử nhà sáng chế, tranh ảnh tư liệu sưu tầm."]
     },
     activities: [
       {
@@ -702,6 +703,7 @@ export function generateFullWeekLessonPlans(
         schoolName: schoolInfo.schoolName,
         departmentName: schoolInfo.departmentName,
         branchName: schoolInfo.branchName,
+        materials: sanitizeLessonPlanMaterials(sp.materials, item.subject, itemGrade, sp.lessonTitle),
         activities: (sp.activities || []).map((act) => ({
           ...act,
           name: normalizeActivityName(act.name),
@@ -845,10 +847,12 @@ export function generateFullWeekLessonPlans(
             : undefined,
         }
       },
-      materials: {
-        teacher: teacherMaterials,
-        student: studentMaterials
-      },
+      materials: sanitizeLessonPlanMaterials(
+        { teacher: teacherMaterials, student: studentMaterials },
+        item.subject,
+        itemGrade,
+        finalLessonTitle
+      ),
       activities: [
         {
           name: englishDetail ? "1. Hoạt động mở đầu (Warm-up)" : "1. Hoạt động mở đầu",

@@ -22,6 +22,7 @@ export function filterPersonalTeacherSchedule(
     const n = it.note;
     return !n.includes("GV Chuyên") && 
            !n.includes("GV Bộ môn") && 
+           !n.includes("GV Đạo đức") && 
            !n.includes("GV Dạy tiết") && 
            !n.includes("HT:") &&
            !n.includes("PHT:") && 
@@ -42,7 +43,7 @@ export function filterPersonalTeacherSchedule(
            !n.includes("Tú Trinh") &&
            !n.includes("Trương Thị Kim Dương") &&
            !n.includes("Lê Thị Hồng Thủy") &&
-           !n.includes("Nguyễn Hoàng Tuấn");
+           !n.includes("Lữ Văn Tuấn");
   });
 }
 
@@ -66,7 +67,7 @@ export function getScheduleAndPlansForTeacher(
   let targetClass = currentSchoolInfo.className;
   let targetGrade = currentSchoolInfo.grade;
 
-  if (isHomeroom && teacher.assignedClasses && teacher.assignedClasses.length > 0) {
+  if (teacher.assignedClasses && teacher.assignedClasses.length > 0) {
     targetClass = teacher.assignedClasses[0];
     const gNum = parseInt(targetClass.charAt(0)) as Grade;
     if (!isNaN(gNum) && gNum >= 1 && gNum <= 5) {

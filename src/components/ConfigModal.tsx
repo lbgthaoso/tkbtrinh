@@ -164,7 +164,7 @@ export const ConfigModal: React.FC<ConfigModalProps> = ({
                   required
                   value={formData.teacherName}
                   onChange={(e) => setFormData({ ...formData, teacherName: e.target.value })}
-                  placeholder={isEn ? "e.g., Nguyen Hoang Tuan / Ms. Nuong" : "Ví dụ: Nguyễn Hoàng Tuấn / Cô Nương / Cô D.Phương"}
+                  placeholder={isEn ? "e.g., Lu Van Tuan / Ms. Nuong" : "Ví dụ: Lữ Văn Tuấn / Cô Nương / Cô D.Phương"}
                   className="flex-1 px-3 py-2 text-xs border border-black bg-stone-50 focus:outline-none focus:bg-white font-serif font-bold text-black"
                 />
                 <select

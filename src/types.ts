@@ -9,7 +9,7 @@ export interface SchoolInfo {
   week: number;
   startDate: string; // 21/09/2026
   endDate: string; // 25/09/2026
-  teacherName: string; // Nguyễn Hoàng Tuấn
+  teacherName: string; // Lữ Văn Tuấn
   teacherType: TeacherType; // "homeroom" (GVCN) hoặc "specialist" (GV Bộ môn/Chuyên)
   specialistSubject?: string; // Tiếng Anh, Tin học, Âm nhạc, Mĩ thuật, Giáo dục thể chất, v.v.
   assignedClasses?: string[]; // Các lớp giảng dạy (dành cho GV Chuyên)

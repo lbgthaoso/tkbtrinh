@@ -55,7 +55,7 @@ export const TimetableManager: React.FC<TimetableManagerProps> = ({
   };
 
   const [viewMode, setViewMode] = useState<"class" | "master" | "teacher">("class");
-  const [selectedTeacher, setSelectedTeacher] = useState<string>(schoolInfo.teacherName || "Nguyễn Hoàng Tuấn");
+  const [selectedTeacher, setSelectedTeacher] = useState<string>(schoolInfo.teacherName || "Lữ Văn Tuấn");
   const [editingCell, setEditingCell] = useState<{ slotKey: string; className: string } | null>(null);
   const [editValue, setEditValue] = useState("");
 
