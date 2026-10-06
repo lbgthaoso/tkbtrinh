@@ -30,30 +30,42 @@ function removeProhibitedPhrases(text: string, isStudent: boolean): string {
     clean = clean.replace(/vở\s+rèn\s+chữ[^\,\;\.]*/gi, "");
     clean = clean.replace(/vở\s+ghi(\s+bài)?[^\,\;\.]*/gi, "");
     clean = clean.replace(/vở\s+viết[^\,\;\.]*/gi, "");
+    clean = clean.replace(/\bvở\s+toán\b[^\,\;\.]*/gi, "");
     clean = clean.replace(/\bvbt\b[^\,\;\.]*/gi, "");
+    clean = clean.replace(/bộ\s+đồ\s+dùng\s+học\s+toán(\s+học\s+sinh|\s+\d+)?[^\,\;\.]*/gi, "");
+    clean = clean.replace(/bộ\s+đồ\s+dùng\s+học\s+tiếng\s+việt[^\,\;\.]*/gi, "");
+    clean = clean.replace(/bộ\s+đồ\s+dùng[^\,\;\.]*/gi, "");
+    clean = clean.replace(/đồ\s+dùng\s+học\s+toán(\s+thực\s+hành)?[^\,\;\.]*/gi, "");
     clean = clean.replace(/bảng\s+con[^\,\;\.]*/gi, "");
     clean = clean.replace(/bảng\s+nhóm[^\,\;\.]*/gi, "phiếu học tập nhóm");
+    clean = clean.replace(/khăn\s+lau(\s+bảng)?(\s+ẩm)?[^\,\;\.]*/gi, "");
     clean = clean.replace(/phấn\s*\/\s*bút\s+dạ/gi, "");
     clean = clean.replace(/phấn\s+(và|hoặc)?\s*bút\s+dạ/gi, "");
+    clean = clean.replace(/phấn\s+trắng/gi, "");
     clean = clean.replace(/phấn\s+viết/gi, "");
     clean = clean.replace(/\bphấn\b/gi, "");
-    clean = clean.replace(/bút\s+dạ(\s+màu)?/gi, "bút màu");
+    clean = clean.replace(/bút\s+dạ(\s+màu)?/gi, "");
+    clean = clean.replace(/bút\s+viết\s+bảng/gi, "");
     clean = clean.replace(/giấy\s+nháp/gi, "");
     clean = clean.replace(/\bnháp\b/gi, "");
     clean = clean.replace(/bút\s+mực/gi, "");
     clean = clean.replace(/bút\s+chì(,\s*tẩy)?/gi, "");
-    clean = clean.replace(/bộ\s+đồ\s+dùng\s+học\s+toán(\s+học\s+sinh|\s+\d+)?/gi, "đồ dùng học toán thực hành");
+    clean = clean.replace(/tẩy\s+gôm/gi, "");
     clean = clean.replace(/đồ\s+dùng\s+học\s+tập(\s+cá\s+nhân)?/gi, "");
+    clean = clean.replace(/dụng\s+cụ\s+học\s+tập/gi, "");
     clean = clean.replace(/sách\s*(\/|\s+và\s+)?vở\s+bài\s+tập[^\,\;\.]*/gi, "");
     clean = clean.replace(/sách\s+truyện\s+mang\s+theo/gi, "sách/truyện đọc theo chủ điểm");
   } else {
     // Prohibited teacher phrases
+    clean = clean.replace(/kế\s+hoạch\s+bài\s+dạy[^\,\;\.]*/gi, "");
+    clean = clean.replace(/giáo\s+án[^\,\;\.]*/gi, "");
     clean = clean.replace(/sách\s+giáo\s+khoa[^\,\;\.]*/gi, "");
     clean = clean.replace(/sách\s+giáo\s+viên[^\,\;\.]*/gi, "");
     clean = clean.replace(/\bsgk\b[^\,\;\.]*/gi, "");
     clean = clean.replace(/\bsgv\b[^\,\;\.]*/gi, "");
     clean = clean.replace(/thước\s+kẻ,\s*phấn\s+màu/gi, "");
     clean = clean.replace(/phấn\s+màu/gi, "");
+    clean = clean.replace(/\bphấn\b/gi, "");
     clean = clean.replace(/bảng\s+lớp/gi, "");
   }
 
@@ -323,9 +335,18 @@ export function sanitizeLessonPlanMaterials(
   if (cleanedStudentList.length === 0) {
     cleanedStudentList = getDefaultStudentMaterials(subject, grade, lessonTitle);
   } else {
-    // Check if the only remaining item is too short or still generic
+    // Check if remaining items are still generic or contain remaining prohibited items
     const combined = cleanedStudentList.join(" ").toLowerCase();
-    if (combined.length < 10 || combined === "đồ dùng học tập" || combined === "dụng cụ học tập") {
+    if (
+      combined.length < 12 || 
+      combined.includes("đồ dùng học tập") || 
+      combined.includes("dụng cụ học tập") ||
+      combined.includes("bộ đồ dùng học toán") ||
+      combined.includes("bảng con") ||
+      combined.includes("vở bài tập") ||
+      combined.includes("sách giáo khoa") ||
+      combined.includes("nháp")
+    ) {
       cleanedStudentList = getDefaultStudentMaterials(subject, grade, lessonTitle);
     }
   }
@@ -341,6 +362,17 @@ export function sanitizeLessonPlanMaterials(
 
   if (cleanedTeacherList.length === 0) {
     cleanedTeacherList = getDefaultTeacherMaterials(subject, grade, lessonTitle);
+  } else {
+    const combinedT = cleanedTeacherList.join(" ").toLowerCase();
+    if (
+      combinedT.length < 15 ||
+      combinedT.includes("sách giáo khoa") ||
+      combinedT.includes("sách giáo viên") ||
+      combinedT.includes("kế hoạch bài dạy") ||
+      combinedT.includes("giáo án")
+    ) {
+      cleanedTeacherList = getDefaultTeacherMaterials(subject, grade, lessonTitle);
+    }
   }
 
   return {

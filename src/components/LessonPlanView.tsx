@@ -595,16 +595,16 @@ export const LessonPlanView: React.FC<LessonPlanViewProps> = ({
                                 </th>
                               </tr>
                             </thead>
-                            <tbody className="divide-y divide-stone-300">
+                            <tbody className="bg-white">
                               {plan.activities?.map((act, ai) => (
-                                <tr key={act.id || ai} className={ai % 2 === 0 ? "bg-white" : "bg-stone-50/60"}>
+                                <tr key={act.id || ai} className="bg-white">
                                   {/* Cột 1: Hoạt động của GV (Gồm Tên hoạt động, Mục tiêu, Cách tiến hành) */}
-                                  <td className="py-2.5 px-3 align-top border-r border-black w-1/2 space-y-1.5">
+                                  <td className="py-3 px-3.5 align-top border-r border-black w-1/2 space-y-1.5">
                                     <div className="font-bold text-black text-xs uppercase">
                                       {normalizeActivityName(act.name)}
                                     </div>
                                     {act.objective && (
-                                      <div className="text-[11px] text-stone-700 bg-stone-100 p-1.5 border border-stone-300">
+                                      <div className="text-xs text-stone-800">
                                         <strong>{isEn ? "* Objective: " : "* Mục tiêu: "}</strong>{act.objective}
                                       </div>
                                     )}
@@ -616,11 +616,11 @@ export const LessonPlanView: React.FC<LessonPlanViewProps> = ({
                                   </td>
 
                                   {/* Cột 2: Hoạt động của HS (Nội dung và hành động thực hiện của học sinh) */}
-                                  <td className="py-2.5 px-3 align-top text-stone-900 leading-relaxed whitespace-pre-line text-xs w-1/2">
-                                    <div className="font-bold text-stone-500 text-[10.5px] mb-1.5 uppercase">
-                                      {isEn ? "(Students' Response & Execution)" : "(Phản hồi & Thực hiện của HS)"}
+                                  <td className="py-3 px-3.5 align-top text-stone-900 leading-relaxed whitespace-pre-line text-xs w-1/2 space-y-1.5">
+                                    <div className="font-bold text-black text-xs uppercase">
+                                      {normalizeActivityName(act.name)}
                                     </div>
-                                    {act.studentActivity}
+                                    <div>{act.studentActivity}</div>
                                   </td>
                                 </tr>
                               ))}
@@ -1122,11 +1122,11 @@ export const LessonPlanView: React.FC<LessonPlanViewProps> = ({
                         </th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-black">
+                    <tbody className={isEditing ? "divide-y divide-stone-300" : "bg-white"}>
                       {(isEditing ? (editFormData?.activities || []) : activePlan.activities).map((act, actIdx) => (
-                        <tr key={act.id || actIdx} className={actIdx % 2 === 0 ? "bg-white" : "bg-stone-50/60"}>
+                        <tr key={act.id || actIdx} className="bg-white">
                           {/* Teacher Column */}
-                          <td className="py-3 px-4 border-r border-black align-top space-y-2 w-1/2">
+                          <td className="py-3.5 px-4 border-r border-black align-top space-y-2 w-1/2">
                             {isEditing ? (
                               <div className="space-y-2">
                                 <div className="flex items-center justify-between gap-2">
@@ -1176,7 +1176,7 @@ export const LessonPlanView: React.FC<LessonPlanViewProps> = ({
                                 <div className="font-bold text-black text-xs uppercase">
                                   {normalizeActivityName(act.name)}
                                 </div>
-                                <div className="text-xs text-stone-700 bg-stone-100 p-2 border border-stone-300">
+                                <div className="text-xs text-stone-800">
                                   <strong>{isEn ? "* Objective: " : "* Mục tiêu: "}</strong>{act.objective}
                                 </div>
                                 <div className="text-stone-900 leading-relaxed whitespace-pre-line text-xs">
@@ -1189,7 +1189,7 @@ export const LessonPlanView: React.FC<LessonPlanViewProps> = ({
                           </td>
 
                           {/* Student Column */}
-                          <td className="py-3 px-4 align-top text-stone-900 leading-relaxed whitespace-pre-line text-xs w-1/2">
+                          <td className="py-3.5 px-4 align-top text-stone-900 leading-relaxed whitespace-pre-line text-xs w-1/2 space-y-2">
                             {isEditing ? (
                               <div className="space-y-2">
                                 <label className="text-[10px] font-bold text-stone-700 uppercase block">
@@ -1204,10 +1204,10 @@ export const LessonPlanView: React.FC<LessonPlanViewProps> = ({
                               </div>
                             ) : (
                               <>
-                                <div className="font-bold text-stone-500 text-[11px] mb-2 uppercase">
-                                  {isEn ? "(Students' Response & Execution)" : "(Phản hồi & Thực hiện của HS)"}
+                                <div className="font-bold text-black text-xs uppercase">
+                                  {normalizeActivityName(act.name)}
                                 </div>
-                                {act.studentActivity}
+                                <div>{act.studentActivity}</div>
                               </>
                             )}
                           </td>

@@ -102,8 +102,8 @@ export const WEEK_3_GRADE_5_PLANS: Record<string, LessonPlan> = {
       }
     },
     materials: {
-      teacher: ["Sách giáo khoa, máy chiếu trình chiếu bài thơ, tranh ảnh minh họa hạt nảy mầm."],
-      student: ["Sách giáo khoa Tiếng Việt 5, vở ghi bài."]
+      teacher: ["Ti vi/máy chiếu trình chiếu bài thơ tương tác, tranh ảnh minh họa hạt nảy mầm."],
+      student: ["Phiếu học tập nhóm, tranh ảnh về sự phát triển của mầm cây sưu tầm."]
     },
     activities: [
       {
@@ -166,8 +166,8 @@ export const WEEK_3_GRADE_5_PLANS: Record<string, LessonPlan> = {
       }
     },
     materials: {
-      teacher: ["Phiếu bài tập nhóm, bảng phụ ghi các đoạn văn mẫu."],
-      student: ["Vở bài tập Tiếng Việt 5, bút."]
+      teacher: ["Ti vi/máy chiếu, phiếu bài tập nhóm, bảng phụ ghi các đoạn văn mẫu."],
+      student: ["Phiếu bài tập nhóm, thẻ từ ngữ phục vụ luyện tập."]
     },
     activities: [
       {
@@ -358,8 +358,8 @@ export const WEEK_3_GRADE_5_PLANS: Record<string, LessonPlan> = {
       }
     },
     materials: {
-      teacher: ["Kế hoạch bài dạy, bài giảng điện tử (PPTX), bảng phụ ghi sẵn đoạn văn mẫu."],
-      student: ["Sách giáo khoa Tiếng Việt 5, vở bài tập Tiếng Việt, vở ghi bài."]
+      teacher: ["Ti vi/máy chiếu, bài giảng điện tử (PPTX), bảng phụ ghi sẵn đoạn văn mẫu."],
+      student: ["Phiếu học tập nhóm, dàn ý bài văn kể chuyện sáng tạo."]
     },
     activities: [
       {
@@ -421,8 +421,8 @@ export const WEEK_3_GRADE_5_PLANS: Record<string, LessonPlan> = {
       }
     },
     materials: {
-      teacher: ["Bài giảng điện tử tương tác, bộ đồ dùng dạy học Toán 5, phiếu học tập."],
-      student: ["SGK Toán 5, vở bài tập Toán, bảng con, nháp."]
+      teacher: ["Ti vi/máy chiếu, bài giảng điện tử tương tác, thẻ phân số trực quan, phiếu học tập."],
+      student: ["Phiếu học tập cá nhân và nhóm, thẻ phân số thực hành."]
     },
     activities: [
       {
@@ -613,8 +613,8 @@ export const WEEK_3_GRADE_5_PLANS: Record<string, LessonPlan> = {
       }
     },
     materials: {
-      teacher: ["Sách giáo khoa, máy chiếu, tranh minh họa bài đọc."],
-      student: ["SGK Tiếng Việt 5, vở ghi bài."]
+      teacher: ["Ti vi/máy chiếu, bài giảng điện tử (PPTX), video clip bóng đá thiếu nhi và tranh minh họa bài đọc."],
+      student: ["Phiếu học tập nhóm, tranh ảnh tư liệu sưu tầm về các môn thể thao."]
     },
     activities: [
       {
@@ -866,8 +866,8 @@ export const WEEK_3_GRADE_5_PLANS: Record<string, LessonPlan> = {
       }
     },
     materials: {
-      teacher: ["Slide tương tác quy tắc chuyển đổi hỗn số, bảng phụ."],
-      student: ["SGK Toán 5, bảng con, vở bài tập."]
+      teacher: ["Ti vi/máy chiếu, slide tương tác quy tắc chuyển đổi hỗn số, bảng phụ."],
+      student: ["Phiếu học tập cá nhân và nhóm, thẻ hỗn số thực hành."]
     },
     activities: [
       {
@@ -1181,8 +1181,8 @@ export const WEEK_3_GRADE_5_PLANS: Record<string, LessonPlan> = {
       }
     },
     materials: {
-      teacher: ["Thước kẻ, ê-ke to trên bảng lớp, hình vẽ ôn tập."],
-      student: ["SGK Toán 5, thước kẻ, ê-ke, vở bài tập."]
+      teacher: ["Ti vi/máy chiếu, bài giảng điện tử (PPTX), thước kẻ, ê-ke to trực quan trên bảng, hình vẽ ôn tập."],
+      student: ["Thước kẻ có vạch chia cm, ê-ke, phiếu học tập nhóm."]
     },
     activities: [
       {
